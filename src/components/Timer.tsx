@@ -1,15 +1,24 @@
 import { Card } from "../styles";
 import { useEffect, useRef } from "react";
 import { useRecoilState, useResetRecoilState } from "recoil";
-import { minState, secState, playState } from "../atoms";
+import { minState, secState, playState, roundState, goalState } from "../atoms";
 
-export default function TimeCard() {
+interface ITimerProps {
+  rounds: number;
+  goals: number;
+}
+
+export default function Timer({ rounds, goals }: ITimerProps) {
   const [minute, setMinute] = useRecoilState(minState);
   const [second, setSecond] = useRecoilState(secState);
   const [isPlay, setIsPlay] = useRecoilState(playState);
+  const [currentRound, setRound] = useRecoilState(roundState);
+  const [currentGoal, setGoal] = useRecoilState(goalState);
   const secRef = useRef<ReturnType<typeof setInterval>>();
   const resetMinute = useResetRecoilState(minState);
   const resetSecond = useResetRecoilState(secState);
+  const resetRound = useResetRecoilState(roundState);
+  const resetGoal = useResetRecoilState(goalState);
 
   const updateSecond = () => {
     setSecond((sec) => {
@@ -33,7 +42,7 @@ export default function TimeCard() {
             }
           });
         }
-      }, 30);
+      }, 1);
     } else {
       clearInterval(secRef.current);
     }
@@ -47,7 +56,22 @@ export default function TimeCard() {
     if (minute === 0 && second === 60) {
       resetMinute();
       resetSecond();
-      setIsPlay(false);
+      if (currentGoal < goals) {
+        if (currentRound < rounds) {
+          setRound((round) => round + 1);
+          if (currentRound + 1 === rounds) {
+            setGoal((goal) => goal + 1);
+            if (currentGoal + 1 === goals) {
+              alert("Well done!!");
+              resetRound();
+              resetGoal();
+            }
+          }
+        } else {
+          setRound(1);
+        }
+        setIsPlay(false);
+      }
     }
   }, [minute, second]);
 

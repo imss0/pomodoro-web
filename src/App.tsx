@@ -5,6 +5,8 @@ import Button from "./components/Button";
 import Counter from "./components/Counter";
 
 export default function App() {
+  const ROUND_TARGET = 3;
+  const GOAL_TARGET = 5;
   return (
     <>
       <HelmetProvider>
@@ -24,12 +26,12 @@ export default function App() {
       <Wrapper>
         <h1>Pomodoro</h1>
         <TimerArea>
-          <Timer />
+          <Timer rounds={ROUND_TARGET} goals={GOAL_TARGET} />
         </TimerArea>
         <Button />
         <CounterArea>
-          <Counter titleText={"ROUND"} target={4} />
-          <Counter titleText={"GOALS"} target={12} />
+          <Counter titleText={"ROUND"} target={ROUND_TARGET} />
+          <Counter titleText={"GOAL"} target={GOAL_TARGET} />
         </CounterArea>
       </Wrapper>
     </>
