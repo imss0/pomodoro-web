@@ -32,6 +32,10 @@ export const Card = styled.div`
   border-radius: 5px;
   margin: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
 `;
 
 // Button Component
@@ -42,10 +46,19 @@ export const Btn = styled.button`
   color: white;
   width: 75px;
   height: 75px;
-  font-size: 48px;
+  cursor: pointer;
 `;
 
 // Counter Component
-export const CounterTitle = styled.p`
+export const CounterContainer = styled.div`
   font-family: "Noto Sans", sans-serif;
+  font-weight: 500;
+  text-align: center;
+  width: 100px;
+`;
+
+export const CounterTitle = styled.p``;
+
+export const CounterDetail = styled.p`
+  opacity: 0.5;
 `;

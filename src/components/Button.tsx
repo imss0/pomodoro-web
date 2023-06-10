@@ -1,10 +1,14 @@
 import { Btn } from "../styles";
-import { PlayIcon, PauseIcon } from "@heroicons/react/20/solid";
+import { PlayIcon, PauseIcon } from "./ButtonIcons";
+import { useRecoilState } from "recoil";
+import { playState } from "../atoms";
 
 export default function Button() {
-  return (
-    <Btn>
-      <PauseIcon className="h-4 w-4 text-gray-500" />
-    </Btn>
-  );
+  const [isPlay, setIsPlay] = useRecoilState(playState);
+
+  const onClick = () => {
+    setIsPlay((state) => !state);
+  };
+
+  return <Btn onClick={onClick}>{isPlay ? <PauseIcon /> : <PlayIcon />}</Btn>;
 }

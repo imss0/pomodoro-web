@@ -1,35 +1,35 @@
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Wrapper, TimerArea, CounterArea } from "./styles";
-import TimeCard from "./components/Timecard";
+import Timer from "./components/Timer";
 import Button from "./components/Button";
 import Counter from "./components/Counter";
 
 export default function App() {
   return (
     <>
-      <Helmet>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="true"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Noto+Sans:wght@400;500&display=swap"
-          rel="stylesheet"
-        />
-      </Helmet>
+      <HelmetProvider>
+        <Helmet>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin="true"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Noto+Sans:wght@400;500&display=swap"
+            rel="stylesheet"
+          />
+        </Helmet>
+      </HelmetProvider>
       <Wrapper>
         <h1>Pomodoro</h1>
         <TimerArea>
-          <TimeCard />
-          <p style={{ opacity: 0.5 }}>:</p>
-          <TimeCard />
+          <Timer />
         </TimerArea>
         <Button />
         <CounterArea>
-          <Counter text={"ROUND"} />
-          <Counter text={"GOALS"} />
+          <Counter titleText={"ROUND"} target={4} />
+          <Counter titleText={"GOALS"} target={12} />
         </CounterArea>
       </Wrapper>
     </>
