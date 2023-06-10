@@ -1,58 +1,37 @@
-import { motion } from "framer-motion";
-import styled from "styled-components";
-
-const Wrapper = styled.div`
-  background-color: hotpink;
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-const Box = styled(motion.div)`
-  width: 200px;
-  height: 200px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  background-color: rbga(255, 255, 255, 0.2);
-  border-radius: 15px;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.06);
-`;
-
-const Circle = styled(motion.div)`
-  width: 70px;
-  height: 70px;
-  background-color: white;
-  border-radius: 40px;
-  place-self: center;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.06);
-`;
-
-const BoxVariants = {
-  start: { opacity: 0, scale: 0.5 },
-  end: {
-    opacity: 1,
-    scale: 1,
-    transition: { type: "spring", durtaion: 0.5, bounce: 0.5 },
-  },
-};
-
-const CircleVariants = {
-  start: { opacity: 0 },
-  end: {
-    opacity: 1,
-  },
-};
+import { Helmet } from "react-helmet";
+import { Wrapper, TimerArea, CounterArea } from "./styles";
+import TimeCard from "./components/Timecard";
+import Button from "./components/Button";
+import Counter from "./components/Counter";
 
 export default function App() {
   return (
-    <Wrapper>
-      <Box variants={BoxVariants} initial="start" animate="end">
-        <Circle variants={CircleVariants} />
-        <Circle variants={CircleVariants} />
-        <Circle variants={CircleVariants} />
-        <Circle variants={CircleVariants} />
-      </Box>
-    </Wrapper>
+    <>
+      <Helmet>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="true"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Noto+Sans:wght@400;500&display=swap"
+          rel="stylesheet"
+        />
+      </Helmet>
+      <Wrapper>
+        <h1>Pomodoro</h1>
+        <TimerArea>
+          <TimeCard />
+          <p style={{ opacity: 0.5 }}>:</p>
+          <TimeCard />
+        </TimerArea>
+        <Button />
+        <CounterArea>
+          <Counter text={"ROUND"} />
+          <Counter text={"GOALS"} />
+        </CounterArea>
+      </Wrapper>
+    </>
   );
 }
