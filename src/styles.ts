@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 // App
 export const Wrapper = styled.div`
@@ -24,7 +25,7 @@ export const CounterArea = styled.div`
 `;
 
 // Card Component
-export const Card = styled.div`
+export const Card = styled(motion.div)`
   width: 100px;
   height: 150px;
   background-color: white;
@@ -39,7 +40,7 @@ export const Card = styled.div`
 `;
 
 // Button Component
-export const Btn = styled.button`
+export const Btn = styled(motion.button)`
   border: 0;
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.2);

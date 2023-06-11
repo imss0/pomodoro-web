@@ -42,7 +42,7 @@ export default function Timer({ rounds, goals }: ITimerProps) {
             }
           });
         }
-      }, 1);
+      }, 1000);
     } else {
       clearInterval(secRef.current);
     }
@@ -77,9 +77,36 @@ export default function Timer({ rounds, goals }: ITimerProps) {
 
   return (
     <>
-      <Card>{minute}</Card>
+      <Card
+        key={minute}
+        variants={CardVariants}
+        animate={"show"}
+        initial="hide"
+      >
+        {minute}
+      </Card>
       <p style={{ opacity: 0.5 }}>:</p>
-      <Card>{second === 60 ? "00" : second}</Card>
+      <Card
+        key={second}
+        variants={CardVariants}
+        animate={"show"}
+        initial="hide"
+      >
+        {second === 60 ? "00" : second < 10 ? `0${second}` : second}
+      </Card>
     </>
   );
 }
+
+const CardVariants = {
+  show: {
+    scale: 1,
+    transition: {
+      ease: "easeOut",
+      duration: 0.3,
+    },
+  },
+  hide: {
+    scale: 0.2,
+  },
+};

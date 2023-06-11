@@ -5,8 +5,8 @@ import Button from "./components/Button";
 import Counter from "./components/Counter";
 
 export default function App() {
-  const ROUND_TARGET = 3;
-  const GOAL_TARGET = 5;
+  const ROUND_TARGET = 4;
+  const GOAL_TARGET = 12;
   return (
     <>
       <HelmetProvider>
